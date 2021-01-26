@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+#fixed-top{
+  /* border-bottom: 1px solid rgb(56, 61, 63); */
+  /* background-color:rgb(32, 35, 42); */
+  position: fixed;
+  width:100%;
+  z-index: 1;
+}
+#jobs{
+  border-left: 1px solid white;
+  padding-left: 10px;
+}
