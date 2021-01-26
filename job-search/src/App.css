@@ -12,3 +12,8 @@
   border-left: 1px solid white;
   padding-left: 10px;
 }
+
+#card{
+  cursor: pointer;
+  margin: 10px;
+}
