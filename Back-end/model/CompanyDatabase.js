@@ -34,4 +34,6 @@ module.exports = [
       email: 'recruiter@RCC.sa',
       location: 'Jubail',
     },
+
   ];
+

@@ -5,7 +5,6 @@ const JobDatabase = require('../model/JobDatabase')
 
 // Instantiate a Router (mini app that only handles routes)
 const router = express.Router();
-// app.use(express.json());
 
 //insert to database
 // Jobs.Job.insertMany(JobDatabase, (err, jobs) => {
