@@ -5,6 +5,7 @@
   /* border-bottom: 1px solid rgb(56, 61, 63); */
   /* background-color:rgb(32, 35, 42); */
   position: fixed;
+  margin: -100px 0px; /* if you change it(change #cardsContainer{ margin:100px} */
   width:100%;
   z-index: 1;
 }
@@ -12,8 +13,28 @@
   border-left: 1px solid white;
   padding-left: 10px;
 }
+#cardsContainer{
+  margin:100px 400px
+}
 
 #card{
+  /* height:400px;
+  width:500px; */
+  float: left;
   cursor: pointer;
-  margin: 10px;
+  margin: 10px
+}
+
+p{
+  margin-bottom: 20px;
+}
+
+
+
+
+@media only screen and (min-width: 375px) and (max-width: 1900px) {
+  #cardsContainer{
+    margin:100px 50px
+  }
+
 }

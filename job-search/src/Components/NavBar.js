@@ -5,13 +5,13 @@ import { InputGroup, Input, Icon } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 
 
-const NavBar = () => {
+const NavBar = (props) => {
     const styles = {
         width: 300
     };
     return (
 
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar id='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand href="#home">All Jobs</Navbar.Brand>
             <Navbar.Brand id='jobs' href="#home">My Jobs</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
