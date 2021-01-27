@@ -7,10 +7,11 @@ mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid';
 
 const jobSchema = new mongoose.Schema(
 	{
-		title: { type: String, required: true },
+		title: { type: String, required: true, lowercase: true },
 		Description: { type: String, required: true },
 		date: { type: Date, default: Date.now },
 		city: String,
+		company: {type:String},
 		Department: { type: String, required: true },
 		users:[{type: Schema.Types.ObjectId, ref: 'User'}]
 	},
@@ -22,6 +23,7 @@ const jobSchema = new mongoose.Schema(
 const UserSchema = new mongoose.Schema(
 	{
 		name: { type: String, required: true },
+		// type: { type: String, required: true, enum:["admin","recruiter","job seeker"] },
 		type: { type: String, required: true },
 		resume: { type: mongoose.Schema.Types.Mixed},
 		email: { type: mongoose.SchemaTypes.Email, required: true, index: { unique: true } },
@@ -37,11 +39,12 @@ const UserSchema = new mongoose.Schema(
 const CompanySchema = new mongoose.Schema(
 	{
 		name: { type: String, required: true },
-		///Logo pic
+		logo:{data: Buffer, contentType: String},
 		email: { type: mongoose.SchemaTypes.Email, required: true },
 		location: { type: String, required: true },
 		users: [UserSchema] ,
-		jobs: { type: String, required: true },
+		jobs: [jobSchema]
+
 	},
 	{
 		timestamps: true,

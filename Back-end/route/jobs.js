@@ -1,6 +1,53 @@
 // Require necessary NPM packages
 const express = require('express');
 const Jobs = require('../model/schemas')
+const JobDatabase = require('../model/JobDatabase')
+
+// Instantiate a Router (mini app that only handles routes)
+const router = express.Router();
+// app.use(express.json());
+
+//insert to database
+// Jobs.Job.insertMany(JobDatabase, (err, jobs) => {
+//       if (err) {
+//         console.log(err);
+//       }
+//       console.log('added provided job data', jobs);
+//       mongoose.connection.close();
+//     });
+
+
+ //get all jobs
+router.get('/jobs', (req, res) => {
+    Jobs.Job.find({})
+      // Return all
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
+
+  //get jobs by city
+router.get('/jobs-by-city', (req, res) => {
+    Jobs.Job.find({city: req.query.city})
+      // Return all 
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
+
+  //get jobs by job title
+  router.get('/jobs-by-job-title', (req, res) => {
+    const jobTitle = req.query.title.toLowerCase()
+    Jobs.Job.find({title: jobTitle})
+      // Return all 
 
 // Instantiate a Router (mini app that only handles routes)
 const router = express.Router();
@@ -18,6 +65,58 @@ router.get('/jobs', (req, res) => {
       });
   });
 
+  //get all jobs for specific company
+router.get('/jobs-by-company', (req, res) => {
+    Jobs.Job.find({company: req.query.company})
+      // Return all 
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
+
+  //Add new job
+router.post('/add-job', (req, res) => {
+    Jobs.Job.create(req.body)
+      // Return all 
+      .then((newJob) => {
+        res.status(200).json({ theNewJob :newJob });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
+
+
+  //Update job by id
+router.put('/update-job/:id', (req, res) => {
+    Jobs.Job.findByIdAndUpdate(req.params.id,req.body)
+      // Return all
+      .then((Job) => {
+        res.status(200).json({ updatedJob :Job });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
+
+//delete job by Id
+router.delete('/delete-job/:id', (req, res) => {
+    Jobs.Job.findByIdAndDelete(req.params.id)
+      // Return all 
+      .then((Job) => {
+        res.status(200).json({ deletedJob :Job });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  });
 
 // Export the Router so we can use it in the server.js file
 module.exports = router;
