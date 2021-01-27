@@ -19,7 +19,18 @@ const router = express.Router();
 
  //get all jobs
 router.get('/jobs', (req, res) => {
-    Jobs.Job.find({})
+  //if isSort true return all jobs sorted by date
+  req.query.isSort?
+    Jobs.Job.find({}).sort({date: 'descending'})
+    // Return all
+    .then((allJobs) => {
+      res.status(200).json({ jobs: allJobs });
+    })
+    // Catch any errors that might occur
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    })
+    : Jobs.Job.find({})
       // Return all
       .then((allJobs) => {
         res.status(200).json({ jobs: allJobs });
@@ -30,9 +41,10 @@ router.get('/jobs', (req, res) => {
       });
   });
 
-  //get jobs by city
-router.get('/jobs-by-city', (req, res) => {
-    Jobs.Job.find({city: req.query.city})
+  //get jobs by location
+router.get('/jobs-by-location', (req, res) => {
+  req.query.isSort?
+    Jobs.Job.find({location: req.query.location}).sort({date: 'descending'})
       // Return all 
       .then((allJobs) => {
         res.status(200).json({ jobs: allJobs });
@@ -40,34 +52,44 @@ router.get('/jobs-by-city', (req, res) => {
       // Catch any errors that might occur
       .catch((error) => {
         res.status(500).json({ error: error });
-      });
+      }) : Jobs.Job.find({location: req.query.location})
+      // Return all 
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      })
   });
 
   //get jobs by job title
   router.get('/jobs-by-job-title', (req, res) => {
     const jobTitle = req.query.title.toLowerCase()
-    Jobs.Job.find({title: jobTitle})
+    req.query.isSort?
+    Jobs.Job.find({title: jobTitle}).sort({date: 'descending'})
       // Return all 
-
-// Instantiate a Router (mini app that only handles routes)
-const router = express.Router();
- 
- //get all jobs
-router.get('/jobs', (req, res) => {
-    Jobs.Job.find({})
-      // Return all Articles as an Array
       .then((allJobs) => {
         res.status(200).json({ jobs: allJobs });
       })
       // Catch any errors that might occur
       .catch((error) => {
         res.status(500).json({ error: error });
-      });
+      }) : Jobs.Job.find({title: jobTitle})
+      // Return all 
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      })
   });
 
   //get all jobs for specific company
 router.get('/jobs-by-company', (req, res) => {
-    Jobs.Job.find({company: req.query.company})
+  req.query.isSort?
+    Jobs.Job.find({company: req.query.company}).sort({date: 'descending'})
       // Return all 
       .then((allJobs) => {
         res.status(200).json({ jobs: allJobs });
@@ -75,7 +97,15 @@ router.get('/jobs-by-company', (req, res) => {
       // Catch any errors that might occur
       .catch((error) => {
         res.status(500).json({ error: error });
-      });
+      }) : Jobs.Job.find({company: req.query.company})
+      // Return all 
+      .then((allJobs) => {
+        res.status(200).json({ jobs: allJobs });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      }) 
   });
 
   //Add new job
@@ -104,7 +134,6 @@ router.put('/update-job/:id', (req, res) => {
         res.status(500).json({ error: error });
       });
   });
-
 //delete job by Id
 router.delete('/delete-job/:id', (req, res) => {
     Jobs.Job.findByIdAndDelete(req.params.id)
