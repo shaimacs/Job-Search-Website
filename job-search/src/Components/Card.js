@@ -17,8 +17,8 @@ const Card = (props) => {
             <Panel header={props.job.title}>
                 <p>
                 {/* Date: <cite title="Source Title">2/20/2021</cite> */}
-                {console.log('kjkjkjjkjk',props.job.date)}
-                {/* Date: <cite title="Source Title">{props.job.date}</cite> */}
+                {console.log('kjkjkjjkjk',props.job.date.toString())}
+                Date: <cite title={props.job.date.toString()}>{props.job.date.toString().slice(3, 15)}</cite>
                     {/* <small>A suite of React components, sensible UI design, and a friendly development experience.</small> */}
                 </p>
                 <footer className="blockquote-footer">
