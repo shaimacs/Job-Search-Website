@@ -18,11 +18,11 @@ const Card = (props) => {
                 <p>
                 {/* Date: <cite title="Source Title">2/20/2021</cite> */}
                 {console.log('kjkjkjjkjk',props.job.date.toString())}
-                Date: <cite title={props.job.date.toString()}>{props.job.date.toString().slice(3, 15)}</cite>
+                Date: <cite title={props.job.date.toString()}>{props.job.date.toString().slice(0, 10)}</cite>
                     {/* <small>A suite of React components, sensible UI design, and a friendly development experience.</small> */}
                 </p>
                 <footer className="blockquote-footer">
-                    Saudi Arabia <cite title="Source Title">Riyadh</cite>
+                    Saudi Arabia <cite title="Source Title">{props.job.location}</cite>
                 </footer>
                 
             </Panel>
