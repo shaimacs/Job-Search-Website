@@ -8,24 +8,60 @@ import {useState, useEffect} from 'react';
 function App() {
   // state to store list of jobs
   const [listOfJobs, setListOfJobs]= useState([]);
+  const [Jobslocation, setJobslocation]= useState([]);
+  const [inputTitle, setInputTitle] = useState('');
+
+
+  const handleChange = (e) => {
+    setInputTitle(e);
+}
+
+const callAll=()=>{
+  console.log('221211211')
+  setJobslocation([])
+}
+
+
+const callAllJobs=()=>{
+  // fetch get reqest to /jobs
+  axios.get('http://localhost:5000/jobs')
+  .then(res => {
+    // store response date in state
+    setListOfJobs(res.data.jobs)}
+    )
+  .catch(err => {
+    //if request fialed , log it to console
+    console.log(err)})
+}
+useEffect(() => {
+  call()
+}, [inputTitle])
+
+  const call=()=>{
+    axios({
+      method: 'GET',
+      url: 'http://localhost:5000/jobs-by-job-title',
+      params: {
+          'title': inputTitle,
+      }
+  }).then (res => setJobslocation(res.data.jobs))
+      .catch(err => console.log(err))
+  }
+  useEffect(() => {
+    call()
+  }, [inputTitle])
+
+
   // will render only one time
   useEffect(() => {
-    // fetch get reqest to /jobs
-    axios.get('http://localhost:5000/jobs')
-    .then(res => {
-      // store response date in state
-      setListOfJobs(res.data.jobs)}
-      )
-    .catch(err => {
-      //if request fialed , log it to console
-      console.log(err)})
+    callAllJobs()
   }, [])
   return (
     <div>
       {/* pass state as props to store data in it */}
-      <NavBar setListOfJobs={setListOfJobs}/>
+      <NavBar callAll={()=>callAll()} fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/>
       {/* if list is empty show no Jobs found, otherwise display list of jobs */}
-      {listOfJobs.length > 0 ? <CardsList jobs={listOfJobs}/> : <h1 className="heading">No Job Found....</h1>}
+      {Jobslocation.length > 0 ? <CardsList jobs={Jobslocation}/> : <CardsList jobs={listOfJobs}/>}
     </div>
   );
 }
