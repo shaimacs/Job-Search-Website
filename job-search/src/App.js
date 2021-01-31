@@ -8,11 +8,40 @@ import {useState, useEffect} from 'react';
 function App() {
   // state to store list of jobs
   const [listOfJobs, setListOfJobs]= useState([]);
+
+  const [tempList, setTempList]= useState([]);
+
   const [faves, setFaves] = useState(() => [])
   const [filter, setFilter] = useState(() => 'all')
+
   const [Jobslocation, setJobslocation]= useState([]);
   const [inputTitle, setInputTitle] = useState('');
 
+
+
+// delete fetch request
+const handleDelete = (id) => {
+  axios.delete(`http://localhost:5000/delete-job/${id}`)
+  .then(res => {
+    let filterList = tempList.filter(item => item._id !== id);
+    console.log(filterList)
+    setListOfJobs(filterList);
+  })
+  .catch(err => console.log('delete failed', err))
+}
+
+const handleEdit = (id, newData) => {
+  console.log(id, newData);
+  axios.put(`http://localhost:5000/update-job/${id}`, {newData})
+  .then(res => {
+    let editItem = listOfJobs.find(item => item._id === id);
+    editItem.title = newData.title;
+    editItem.Description = newData.Description;
+
+    let newList = listOfJobs.map(item => item._id !== id ? item : editItem);
+    setListOfJobs(newList);
+  })
+  .catch(err => console.log('edit failed', err));
 
   const handleFilterClick = (filter) => {
     setFilter(prevFilter => prevFilter = filter)
@@ -28,6 +57,7 @@ function App() {
 
 const setFave = () => {
   setFaves(prevFave => prevFave = [])
+
 }
 
   const handleChange = (e) => {
@@ -38,6 +68,7 @@ const callAll=()=>{
   console.log('221211211')
   setJobslocation([])
   handleFilterClick('all')
+
 }
 
 
@@ -46,15 +77,25 @@ const callAllJobs=()=>{
   axios.get('http://localhost:5000/jobs')
   .then(res => {
     // store response date in state
-    setListOfJobs(res.data.jobs)}
+
+    setTempList(res.data.jobs);
+    setListOfJobs(res.data.jobs)
+  }
+
     )
   .catch(err => {
     //if request fialed , log it to console
     console.log(err)})
 }
+
+// useEffect(() => {
+//   call()
+// }, [inputTitle])
+
 useEffect(() => {
   call()
 }, [inputTitle])
+
 
   const call=()=>{
     axios({
@@ -66,6 +107,7 @@ useEffect(() => {
   }).then (res => setJobslocation(res.data.jobs))
       .catch(err => console.log(err))
   }
+
   useEffect(() => {
     call()
   }, [inputTitle])
@@ -77,6 +119,9 @@ useEffect(() => {
   }, [])
 
 
+{/* if list is empty show no Jobs found, otherwise display list of jobs */}
+      {Jobslocation.length > 0 ? <CardsList onDelete={handleDelete} onEdit={handleEdit} jobs={Jobslocation}/> : <CardsList jobs={listOfJobs} onEdit={handleEdit} onDelete={handleDelete}/>}
+
   const cardlist1 = ((filter === 'all')?Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={faves}/>)
   return (
     <div>
@@ -85,6 +130,7 @@ useEffect(() => {
       {/* if list is empty show no Jobs found, otherwise display list of jobs */}
       {cardlist1}
       {/* {Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/>} */}
+
     </div>
   );
 }

@@ -123,9 +123,16 @@ import 'rsuite/dist/styles/rsuite-default.css';
 import { FiShare2, FiUpload, FiCheck, FiXCircle } from "react-icons/fi";
 
 const JobDetails = (props) => {
+    console.log('job detail', props);
     const [show, setShow] = useState(() => false)
+
+    const [isEdit, setIsEdit] = useState(false);
+    const [newTitle, setNewTitle] = useState('');
+    const [newDesc, setNewDesc] = useState('');
+
     const [cv, setCv] = useState(() => false)
     const [text, setText] = useState('Please Drag and Drop your CV');
+
 
     const close = () => {
         setShow(prevShow => prevShow = false)
@@ -146,6 +153,17 @@ const JobDetails = (props) => {
         verticalAlign: 'top',
         lineHeight: '42px',
         display: 'inline-block'
+
+    };        
+
+    const handleEdit = () => {
+        props.onEdit(props.job._id, {
+            title: newTitle,
+            Description: newDesc,
+        } )
+    }
+
+
     }
 
     const open = (funcName,placement) => {
@@ -163,6 +181,7 @@ const JobDetails = (props) => {
         // setIsFave((prevIsFave) => prevIsFave = !isFave)
 
     }
+
 
 
 
@@ -199,9 +218,39 @@ const JobDetails = (props) => {
                         </div>
                     </Drawer.Header>
                     <Drawer.Body id='drawerBody'>
-                        <div>
-                            <p>{props.job.Description}</p>
+                        <div className="row mx-0"  style={{overflow: 'hidden'}}>
+                            {!isEdit ? 
+                            ( <> <div className="col-11">
+                                <p>{props.job.Description}</p>
+                            </div>
+                            <div className="col-4">
+                                    <button className="btn btn-block btn-dark" nClick={() => {props.onDelete(props.job._id); close();}}>Delete</button>
+                            </div>
+                            <div className="col-4">
+                                    <button className="btn btn-block btn-primary" onClick={() => setIsEdit(true)}>Edit</button>
+                            </div>
+                            </>
+                            ) :
+                            <div className="container">
+                                <div className="form">
+                                    <div className="form-group">
+                                        <label htmlFor="title">Title</label>
+                                        <input type="text" className="form-control" placeholder="title" onChange={(e) => setNewTitle(e.target.value)}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="description">Description</label>
+                                        <textarea type="text"  onChange={(e) => setNewDesc(e.target.value)} style={{resize: 'none', height: '30vh'}} row={10} col={1} className="form-control" placeholder="title"></textarea>
+                                    </div>
+                                    <button className="btn btn-block btn-success" onClick={handleEdit}>Edit</button>
+                                    <button className="btn btn-block btn-warning" onClick={() => setIsEdit(false)}>Cancel</button>
+                                </div>
+                            </div>
+                            }
                         </div>
+
+                       
+                        
+
                         {cv ? <div>
                             <h4>{text}</h4>
                             <Uploader toggleText={() => toggleText()} />
