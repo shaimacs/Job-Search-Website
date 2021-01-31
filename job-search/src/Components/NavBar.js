@@ -29,7 +29,7 @@ const NavBar = (props) => {
     return (
         <Navbar id='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand onClick={()=>props.callAll()} href="#home">All Jobs</Navbar.Brand>
-            <Navbar.Brand id='jobs' href="#home">My Jobs</Navbar.Brand>
+            <Navbar.Brand onClick={() => props.handleFilterClick('fav')} id='jobs' href="#home">My Jobs</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">

@@ -8,9 +8,27 @@ import {useState, useEffect} from 'react';
 function App() {
   // state to store list of jobs
   const [listOfJobs, setListOfJobs]= useState([]);
+  const [faves, setFaves] = useState(() => [])
+  const [filter, setFilter] = useState(() => 'all')
   const [Jobslocation, setJobslocation]= useState([]);
   const [inputTitle, setInputTitle] = useState('');
 
+
+  const handleFilterClick = (filter) => {
+    setFilter(prevFilter => prevFilter = filter)
+}
+
+
+  const handleFaveToggle = (job) => {
+    const fave = faves.slice(0)
+    const jobIndex = fave.indexOf(job)
+    jobIndex === -1 ? fave.push(job) : fave.splice(jobIndex, 1)
+    setFaves(prevFave => prevFave = fave)
+}
+
+const setFave = () => {
+  setFaves(prevFave => prevFave = [])
+}
 
   const handleChange = (e) => {
     setInputTitle(e);
@@ -19,6 +37,7 @@ function App() {
 const callAll=()=>{
   console.log('221211211')
   setJobslocation([])
+  handleFilterClick('all')
 }
 
 
@@ -56,12 +75,16 @@ useEffect(() => {
   useEffect(() => {
     callAllJobs()
   }, [])
+
+
+  const cardlist1 = ((filter === 'all')?Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={faves}/>)
   return (
     <div>
       {/* pass state as props to store data in it */}
-      <NavBar callAll={()=>callAll()} fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/>
+      <NavBar handleFilterClick={handleFilterClick} callAll={()=>callAll()} fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/>
       {/* if list is empty show no Jobs found, otherwise display list of jobs */}
-      {Jobslocation.length > 0 ? <CardsList jobs={Jobslocation}/> : <CardsList jobs={listOfJobs}/>}
+      {cardlist1}
+      {/* {Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/>} */}
     </div>
   );
 }

@@ -91,7 +91,11 @@ const CardsList = (props) => {
     // const allJobs = props.jobs.map((job) => {
     const inputTestres = props.jobs.map((job) => {
             return (
-                <JobDetails job={job}/>
+                <JobDetails
+                onFaveToggle={() => props.onFaveToggle(job)}
+                faves={props.faves}
+                job={job}
+                />
             )
         })
         return <div id='cardsContainer'>{inputTestres}</div>
