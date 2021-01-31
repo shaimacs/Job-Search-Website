@@ -39,27 +39,21 @@
 
 
 ### RestAPI 
-|  # | Action  | URL  |  HTTP Verb 
-|  1 |  Index | /jobs  |  GET 
-|  2 |  Index |  /company-logo | GET  
-|  3 |  Show | /jobs-by-location  | GET 
-|  4 |  Show |  /jobs-by-job-title |  GET 
-|  5 |  Show |  /jobs-by-company |  GET 
-|  6 |  Create | /add-job  |  POST 
-|  7 | Update  |  /update-job/:id | PUT  
-|  8 | update  | /companies-jobs  | PUT
-|  9 |  Destroy |  /delete-job/:id |  DELETE
+
+Number        | Action       |      URL    |   HTTP Verb 
+------------- | -------------|-------------|-------------|         
+1             | Index        | /jobs          |GET
+2             | Index        |/company-logo   |GET
+3             | Show         |/jobs-by-location|GET
+4             | Show         |/jobs-by-job-title|GET
+5             | Show         |/jobs-by-company|GET
+6             | Create       |/add-job        |POST
+7             | Update       |/update-job/:id |PUT
+8             | Update       |/companies-jobs |PUT
+9             | Destroy      |/delete-job/:id |DELETE
 
 
 
 ### Resourses 
 [Mongoosejs](https://mongoosejs.com/)
 [Stackoverflow](https://stackoverflow.com/)
-
-
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell 
-
-
