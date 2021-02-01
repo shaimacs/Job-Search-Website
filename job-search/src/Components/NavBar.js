@@ -23,12 +23,40 @@ const NavBar = (props) => {
     //     }).then (res => props.setListOfJobs(res.data.jobs))
     //         .catch(err => console.log(err))
     // }
+    const [placeHolder, setPlaceHolder] = useState('Title');
+    const [searchInput, setSearchInput] = useState('');
+
+    const changePlaceHolder = (text) => {
+        setPlaceHolder(text);
+        setSearchInput('')
+    }
+
+    const searchJobs = () => {
+        let reqURl = '';
+        let reqParams = '';
+
+        if (placeHolder === "Title") {reqURl = 'http://localhost:5000/jobs-by-job-title'; reqParams = {'title': searchInput}}
+        else if (placeHolder === "Location"){ reqURl = 'http://localhost:5000/jobs-by-location'; reqParams = {'location': searchInput}}
+        else if (placeHolder === "Company") {reqURl = 'http://localhost:5000/jobs-by-company'; reqParams = {'company': searchInput}}
+
+        axios({
+            method: 'GET',
+            url: reqURl,
+            params: reqParams,
+        }). then( res =>{
+            console.log('result ', res.data.jobs);
+            // props.setListOfJobs(res.data.jobs);
+            props.setJobsSearchList(res.data.jobs);
+        })
+        .catch(err => console.log(err))
+    }
+
     const styles = {
         width: 300
     };
     return (
         <Navbar id='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand onClick={()=>props.callAll()} href="#home">All Jobs</Navbar.Brand>
+            <Navbar.Brand onClick={()=>props.callAll()} href="/">All Jobs</Navbar.Brand>
 
             <Navbar.Brand onClick={() => props.handleFilterClick('fav')} id='jobs' href="#home">My Jobs</Navbar.Brand>
 
@@ -36,20 +64,22 @@ const NavBar = (props) => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                 </Nav>
-                <Nav>
-                    {/* <Nav.Link href='/'>Home</Nav.Link> */}
-                    <NavDropdown drop='down' title="Filter" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <Nav className="ml-auto">
+                    <Nav.Link href='/add-job'>Add Job</Nav.Link>
+                    <NavDropdown drop='down' title={placeHolder} id="collasible-nav-dropdown">
+                        <NavDropdown.Item onClick={() => changePlaceHolder('Title')}>By Title</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => changePlaceHolder('Location')}>By Location</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={() => changePlaceHolder('Company')}>By Company</NavDropdown.Item>
                     </NavDropdown>
                     <InputGroup inside style={styles}>
                         {/* <Input placeholder="Game name" onChange={(event) => props.handleSearchClick(event)} /> */}
-                        <Input placeholder="Search for Jobs" onChange={props.handleChange} />
+                        <Input placeholder={`Search for Jobs By ${placeHolder}`} value={searchInput} onChange={(e) => setSearchInput(e)} />
+                        {/* <Input placeholder="Search for Jobs" onChange={props.handleChange} /> */}
                         {/* on icon click fire fetchJobsByTItle() to fetch list oof jobs */}
-                        <InputGroup.Button onClick={props.fetchJobsByTitle}>
+                        <InputGroup.Button onClick={searchJobs}>
+                        {/* <InputGroup.Button onClick={props.fetchJobsByTitle}> */}
                             <Icon icon="search" />
                         </InputGroup.Button>
                     </InputGroup>

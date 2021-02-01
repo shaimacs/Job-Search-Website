@@ -1,22 +1,26 @@
 import NavBar from './Components/NavBar'
-import Card from './Components/Card'
-import JobDetails from './Components/JobDetails'
 import CardsList from './Components/CardsList'
 import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import AddJob from './Components/AddJob'
+
 function App() {
   // state to store list of jobs
   const [listOfJobs, setListOfJobs]= useState([]);
 
   const [tempList, setTempList]= useState([]);
+  // const [Jobslocation, setJobslocation]= useState([]);
+  const [jobsSearchList, setJobsSearchList]= useState([]);
 
   const [faves, setFaves] = useState(() => [])
   const [filter, setFilter] = useState(() => 'all')
 
-  const [Jobslocation, setJobslocation]= useState([]);
+  
   const [inputTitle, setInputTitle] = useState('');
-
+  const [companies, setCompanies] = useState([]);
+  
 
 
 // delete fetch request
@@ -24,7 +28,7 @@ const handleDelete = (id) => {
   axios.delete(`http://localhost:5000/delete-job/${id}`)
   .then(res => {
     let filterList = tempList.filter(item => item._id !== id);
-    console.log(filterList)
+    console.log(filterList,'test delete')
     setListOfJobs(filterList);
   })
   .catch(err => console.log('delete failed', err))
@@ -32,7 +36,7 @@ const handleDelete = (id) => {
 
 const handleEdit = (id, newData) => {
   console.log(id, newData);
-  axios.put(`http://localhost:5000/update-job/${id}`, {newData})
+  axios.put(`http://localhost:5000/update-job/${id}`, newData)
   .then(res => {
     let editItem = listOfJobs.find(item => item._id === id);
     editItem.title = newData.title;
@@ -42,7 +46,7 @@ const handleEdit = (id, newData) => {
     setListOfJobs(newList);
   })
   .catch(err => console.log('edit failed', err));
-
+}
   const handleFilterClick = (filter) => {
     setFilter(prevFilter => prevFilter = filter)
 }
@@ -65,9 +69,10 @@ const setFave = () => {
 }
 
 const callAll=()=>{
-  console.log('221211211')
-  setJobslocation([])
+  // setJobslocation([])
+  setJobsSearchList([])
   handleFilterClick('all')
+  // callAllJobs()
 
 }
 
@@ -92,45 +97,84 @@ const callAllJobs=()=>{
 //   call()
 // }, [inputTitle])
 
-useEffect(() => {
-  call()
-}, [inputTitle])
+// useEffect(() => {
+//   call()
+// }, [inputTitle])
 
+const fetchComanies = () => {
+  axios.get('http://localhost:5000/companies')
+  .then(res =>{console.log(res); setCompanies(res.data.companies)})
+  .catch(err => console.log(err))
+}
 
-  const call=()=>{
-    axios({
-      method: 'GET',
-      url: 'http://localhost:5000/jobs-by-job-title',
-      params: {
-          'title': inputTitle,
-      }
-  }).then (res => setJobslocation(res.data.jobs))
-      .catch(err => console.log(err))
-  }
+  // const call=()=>{
+  //   axios({
+  //     method: 'GET',
+  //     url: 'http://localhost:5000/jobs-by-job-title',
+  //     params: {
+  //         'title': inputTitle,
+  //     }
+  // }).then (res => setJobslocation(res.data.jobs))
+  //     .catch(err => console.log(err))
+  // }
+  
 
   useEffect(() => {
-    call()
-  }, [inputTitle])
+    // call()
+    callAllJobs();
+  }, [inputTitle,listOfJobs])
 
 
   // will render only one time
   useEffect(() => {
-    callAllJobs()
+    // callAllJobs();
+    // getLogo()
+    fetchComanies();
+    
   }, [])
 
 
-{/* if list is empty show no Jobs found, otherwise display list of jobs */}
-      {Jobslocation.length > 0 ? <CardsList onDelete={handleDelete} onEdit={handleEdit} jobs={Jobslocation}/> : <CardsList jobs={listOfJobs} onEdit={handleEdit} onDelete={handleDelete}/>}
+/* if list is empty show no Jobs found, otherwise display list of jobs */
+      // {Jobslocation.length > 0 ? <CardsList onDelete={handleDelete} onEdit={handleEdit} jobs={Jobslocation}/> : <CardsList jobs={listOfJobs} onEdit={handleEdit} onDelete={handleDelete}/>}
 
-  const cardlist1 = ((filter === 'all')?Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={faves}/>)
+  // const cardlist1 = ((filter === 'all')?Jobslocation.length > 0 ? 
+  // <CardsList companies={companies} filter={filter} onDelete={handleDelete} onEdit={handleEdit} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> 
+  // : 
+  // <CardsList companies={companies} filter={filter} onDelete={handleDelete} onEdit={handleEdit} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/> 
+  // :
+  // <CardsList filter={filter} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={faves}/>)
+  
+
+
+  const cardlist1 = ((filter === 'all')?(jobsSearchList.length > 0)?
+  <CardsList companies={companies} filter={filter} onDelete={(id)=>handleDelete(id)} onEdit={handleEdit} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={jobsSearchList}/>
+  :
+  <CardsList companies={companies} filter={filter} onDelete={(id)=>handleDelete(id)} onEdit={handleEdit} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/>
+  :
+  <CardsList filter={filter} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={faves}/>)
+
   return (
     <div>
       {/* pass state as props to store data in it */}
-      <NavBar handleFilterClick={handleFilterClick} callAll={()=>callAll()} fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/>
+      {/* <NavBar setJobsSearchList={setJobsSearchList} setListOfJobs={setListOfJobs} handleFilterClick={handleFilterClick} callAll={()=>callAll()}  fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/> */}
+      {/* <NavBar setJobsSearchList={setJobsSearchList} setListOfJobs={setListOfJobs} handleFilterClick={handleFilterClick} callAll={()=>callAll()}  setInputTitle={setInputTitle} handleChange={handleChange}/> */}
+      {/* <NavBar handleFilterClick={handleFilterClick} callAll={()=>callAll()} fetchJobsByTitle={call} setInputTitle={setInputTitle} handleChange={handleChange}/> */}
       {/* if list is empty show no Jobs found, otherwise display list of jobs */}
-      {cardlist1}
-      {/* {Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/>} */}
+      {/* {cardlist1} */}
+      {/* <CardsList  companies={companies} onDelete={handleDelete} onEdit={handleEdit} setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/> */}
 
+      {/* {Jobslocation.length > 0 ? <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={Jobslocation}/> : <CardsList setFave={() => setFave} faves={faves} onFaveToggle={handleFaveToggle} jobs={listOfJobs}/>} */}
+      <Router>
+      <NavBar setJobsSearchList={setJobsSearchList} setListOfJobs={setListOfJobs} handleFilterClick={handleFilterClick} callAll={()=>callAll()}  setInputTitle={setInputTitle} handleChange={handleChange}/>
+        <Switch>
+          <Route exact path="/">
+          {cardlist1}
+          </Route>
+          <Route exact path="/add-job">
+            <AddJob/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
