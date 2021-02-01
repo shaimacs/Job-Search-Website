@@ -52,8 +52,12 @@ Number        | Action       |      URL    |   HTTP Verb
 8             | Update       |/companies-jobs |PUT
 9             | Destroy      |/delete-job/:id |DELETE
 
+### Future Features: 
+- Use 3rd party API to Fetch real Data. 
+- Make sign-up & sing-in. 
+- Get a Notifications to new Jobs in your Region. 
 
 
 ### Resourses 
-[Mongoosejs](https://mongoosejs.com/)
-[Stackoverflow](https://stackoverflow.com/)
+- [Mongoosejs](https://mongoosejs.com/).
+- [Stackoverflow](https://stackoverflow.com/).
