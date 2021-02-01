@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 // Require Route Files
 const jobs = require('./route/jobs');
 const companies = require('./route/companies');
+const users = require('./route/users');
 
 // Require DB Configuration File
 const db_url = require('./db');
@@ -52,7 +53,7 @@ app.use(function (req, res, next) {
 
 app.use(jobs);
 app.use(companies);
-
+app.use(users);
 /*** Routes ***/
 // Define PORT for the API to run on
 const PORT = process.env.PORT || 5000;
