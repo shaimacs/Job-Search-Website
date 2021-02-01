@@ -128,7 +128,7 @@ router.post('/add-job', (req, res) => {
     Job.create(req.body)
     // Return all 
     .then((newJob) => {
-      Company.updateOne({name:req.body.company, $push: { jobs: newJob }})
+      Company.updateOne({name:req.body.company}, {$push: { jobs: newJob }})
       .then((job)=>{
         res.status(200).json('done');
       })
