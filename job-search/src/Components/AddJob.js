@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom'
 import NavBar from './NavBar'
 
-const AddJob = () => {
+const AddJob = (props) => {
 
     const { register, handleSubmit, errors } = useForm();
-
     const history = useHistory();
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('');
@@ -18,8 +17,6 @@ const AddJob = () => {
     const [EmploymentType, setEmploymentType] = useState('');
     const [Description, setDescription] = useState('');
     const [skill, setSkill] = useState('');
-
-
 
     const onHandleSubmit = (e) => {
         const newJob = {
@@ -37,16 +34,18 @@ const AddJob = () => {
             .then(res => {
                 if (res.status == 200) {
                     alert('job added');
-                    history.push('/');
+                    // history.push('/');
+                    props.changePath('/')
                 } else {
                     alert('job not added')
                 }
             })
             .catch(err => console.log('erro in add job', err))
     }
+
     return (
         <div>
-            <NavBar id='nav' />
+            <NavBar id='nav1' />
             <div id='navAdd' className="container add-job-wrapper">
                 <div className="row mx-0">
                     <div
@@ -67,17 +66,14 @@ const AddJob = () => {
                             <label htmlFor="Company" className="text-capitalize">Company</label>
                             <select ref={register({ required: true })} class="form-control" onChange={(e) =>
                                 setCompany(e.target.value)} value={company}>
-                                <option  value="Aramco">Aramco</option>
+                                <option value="Aramco">Aramco</option>
                                 <option value="Sabic">Sabic</option>
                                 <option value="Sasref">Sasref</option>
-                                <option  value="Tafeel">Tafeel</option>
+                                <option value="Tafeel">Tafeel</option>
                                 <option value="SAMACO">SAMACO</option>
                                 <option value="CEPCO">CEPCO</option>
                                 <option value="RCC">RCC</option>
                             </select>
-                            {/* <input type="text" className="form-control" placeholder="Company" ref={register({ required: true})}
-                                onChange={(e) => setCompany(e.target.value)} value={company}
-                            /> */}
                         </div>
                         <div className="form-group">
                             <label htmlFor="Department" className="text-capitalize">Department</label>

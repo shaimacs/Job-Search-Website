@@ -2,13 +2,14 @@ import React from 'react';
 import JobDetails from './JobDetails'
 
 const CardsList = (props) => {
-    
-    // const allJobs = props.jobs.map((job) => {
+
     const inputTestres = props.jobs.map((job) => {
         return (
             <JobDetails
+                type={props.type}
+                handleFilterClick={(det) => props.handleFilterClick(det)}
                 filter={props.filter}
-                onDelete={(id)=>props.onDelete(id)}
+                onDelete={(id) => props.onDelete(id)}
                 onEdit={props.onEdit}
                 onFaveToggle={() => props.onFaveToggle(job)}
                 faves={props.faves}
@@ -22,20 +23,3 @@ const CardsList = (props) => {
 }
 
 export default CardsList;
-
-
-
-
-// import React from 'react';
-// import JobDetails from './JobDetails'
-// const CardsList = ({jobs}) => {
-//     // pass each job to JobDetail component.
-//         return <div id='cardsContainer'>
-//             {
-//                 jobs.map(item => (
-//                     <JobDetails job={item}/>
-//                 ))
-//             }
-//         </div>
-//     }
-// export default CardsList;
