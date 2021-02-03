@@ -25,7 +25,7 @@ function App() {
   const [companies, setCompanies] = useState(() => []);
 
 
-  const [allow, setAllow] = useState(() => false);
+  const [allow, setAllow] = useState(() => true);
 
 
 

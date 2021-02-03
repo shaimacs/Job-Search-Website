@@ -40,7 +40,7 @@ const AddJob = (props) => {
                     alert('job not added')
                 }
             })
-            .catch(err => console.log('erro in add job', err))
+            .catch(err => console.log('error in add job', err))
     }
 
     return (
