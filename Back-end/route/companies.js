@@ -19,7 +19,17 @@ const router = express.Router();
 //     console.log('added provided Company data', comp);
 //     mongoose.connection.close();
 // })
-
+router.post('/add-company', (req, res) => {
+  Company.create(req.body)
+    // Return all 
+    .then((newCompany) => {
+      res.status(200).json({ThenewCompany:newCompany});
+    })
+    // Catch any errors that might occur
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    });
+  });
  //get all 
 // router.get('/companies', (req, res) => {
 //     Company.find({})

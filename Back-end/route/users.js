@@ -28,7 +28,17 @@ const router = express.Router();
 //         res.status(500).json({ error: error });
 //       });
 //   });
-
+router.post('/add-user', (req, res) => {
+  User.create(req.body)
+    // Return all 
+    .then((newUser) => {
+      res.status(200).json({ThenewUser:newUser});
+    })
+    // Catch any errors that might occur
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    });
+  });
 router.get('/log-in', (req, res) => {
     const email = req.query.email
     const password = req.query.password
