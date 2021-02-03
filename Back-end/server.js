@@ -1,6 +1,8 @@
 // Require necessary NPM packages
 const express = require('express');
 const mongoose = require('mongoose');
+//Don't forget to install cors (npm i cors)
+const cors = require("cors");
 // const cors = require('cors');
 
 
@@ -22,23 +24,23 @@ mongoose.connection.once('open', () => {
 const app = express();
 
 
-// 
 //Make sure to add to your whitelist any website or APIs that connect to your backend.
-// var whitelist = [`http://localhost:${PORT}`, "http://example2.com"];
+var whitelist = [`http://localhost:${PORT}`, "https://<your app name>.herokuapp.com"];
 
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       var message =
-//         "The CORS policy for this application does not allow access from origin " +
-//         origin;
-//       callback(new Error(message), false);
-//     }
-//   },
-// };
-// app.use(cors(corsOptions));
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      var message =
+        "The CORS policy for this application does not allow access from origin " +
+        origin;
+      callback(new Error(message), false);
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 
 

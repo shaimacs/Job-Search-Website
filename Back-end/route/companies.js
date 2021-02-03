@@ -4,8 +4,13 @@ const express = require('express');
 const {Job, Company} = require('../model/schemas')
 const CompanyDatabase = require('../model/CompanyDatabase')
 
+// const friendsRouter = require('./routes/seller');
+// app.use('/api/seller', sellerRouter);
+
 // Instantiate a Router (mini app that only handles routes)
 const router = express.Router();
+
+
 
 //insert to database
 // Company.insertMany(CompanyDatabase, (err,comp)=>{
