@@ -14,7 +14,7 @@ Run `npm start` to start your frontend.<br>
 
 # Use
 
-Either download the project or [Use it online]()
+Either download the project or [Use it online](https://job-search-wesbsite.herokuapp.com/)
 <br><br><br>
 
 ### Technologies Used :
@@ -78,14 +78,20 @@ Click on the job to see more info.
 
 ### WireFrames
 
-> WireFrame. 
-
-> Add Job.
-
-
+> WireFrame.
+![]("./Images/WireFrame1.jpeg")
+![Test Image 1]("./Images/WireFrame1.jpeg")
+![](Images/WireFrame1.jpeg)
+<img src = "Images/WireFrame1.jpeg" alt = "W1"> 
+<img src = "Images/WireFrame2.jpeg" > 
+<img src = "Images/WireFrame3.jpeg" > 
 
 
 ### ER Diagram
+<img src = "Images/ERD.jpg"> 
+
+### Use Case 
+<img src = "usecase-p3.png">
 
 ### Dependencies Used: 
 `$ npm install`
@@ -100,10 +106,11 @@ Number        | Action       |      URL    |   HTTP Verb
 3             | Show         |/jobs-by-location|GET
 4             | Show         |/jobs-by-job-title|GET
 5             | Show         |/jobs-by-company|GET
-6             | Create       |/add-job        |POST
-7             | Update       |/update-job/:id |PUT
-8             | Update       |/companies-jobs |PUT
-9             | Destroy      |/delete-job/:id |DELETE
+6             | Create       |/add-user       |POST
+7             | Create       |/add-job        |POST
+8             | Create       |/add-company       |POST
+9             | Update       |/update-job/:id |PUT
+10             | Destroy      |/delete-job/:id |DELETE
 
 ### Future Features: 
 - [ ] Use 3rd party API to Fetch real Data. 
