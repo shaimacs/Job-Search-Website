@@ -1,4 +1,6 @@
+
 // companies.js
+
 // Require necessary NPM packages
 const express = require('express');
 const {Job, Company} = require('../model/schemas')
