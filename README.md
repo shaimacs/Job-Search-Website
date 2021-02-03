@@ -90,9 +90,6 @@ Click on the job to see more info.
 ### Use Case 
 <img src = "Images/usecase-p3.png" height="600" width="600">
 
-### Dependencies Used: 
-`$ npm install`
-
 
 ### RestAPI 
 
