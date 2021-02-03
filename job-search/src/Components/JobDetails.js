@@ -34,7 +34,7 @@ const JobDetails = (props) => {
         setShow(prevShow => prevShow = false)
         props.filter === 'fav' ? console.log('k') : props.handleFilterClick('all')
     }
-    const toggleDrawer = () => {
+    const toggleDrawer = (placement) => {
         setShow(prevShow => prevShow = true)
         props.filter === 'fav' ? console.log('k') : props.handleFilterClick('det')
 
@@ -94,6 +94,7 @@ const JobDetails = (props) => {
                     show={show}
                     onHide={close}
                     size={'lg'}
+                    placement={'left'} 
                 >
                     <div id='drawer'>
                         <Drawer.Header >
@@ -202,6 +203,7 @@ const JobDetails = (props) => {
                     show={show}
                     onHide={close}
                     size={'lg'}
+                    placement={'left'} 
                 >
                     <div id='drawer'>
                         <Drawer.Header >
