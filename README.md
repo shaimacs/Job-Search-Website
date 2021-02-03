@@ -79,19 +79,16 @@ Click on the job to see more info.
 ### WireFrames
 
 > WireFrame.
-![]("./Images/WireFrame1.jpeg")
-![Test Image 1]("./Images/WireFrame1.jpeg")
-![](Images/WireFrame1.jpeg)
-<img src = "Images/WireFrame1.jpeg" alt = "W1"> 
-<img src = "Images/WireFrame2.jpeg" > 
-<img src = "Images/WireFrame3.jpeg" > 
 
+<img src = "Images/WireFrame1.jpeg" > 
+<img src = "Images/WireFrame2.jpeg" height="600" width="600"> 
+<img src = "Images/WireFrame3.jpeg" height="600" width="600"> 
 
 ### ER Diagram
 <img src = "Images/ERD.jpg"> 
 
 ### Use Case 
-<img src = "usecase-p3.png">
+<img src = "Images/usecase-p3.png" height="600" width="600">
 
 ### Dependencies Used: 
 `$ npm install`
