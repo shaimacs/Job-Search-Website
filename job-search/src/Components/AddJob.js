@@ -28,7 +28,7 @@ const AddJob = (props) => {
             summary,
             EmploymentType,
             Description: Description.split('\n'),
-            skill: skill.split('\n'),
+            skills: skill.split('\n'),
         }
         axios.post('http://localhost:5000/add-job', newJob)
             .then(res => {

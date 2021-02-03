@@ -39,26 +39,26 @@ const Login = (props) => {
     }
     return (
         <div className="show-fake-browser login-page">
-            <Container>
+             <Container id="login-body">
                 <Header>
                     <NavBar id='nav' />
                 </Header>
                 <Content id='navAdd1'>
                     <FlexboxGrid justify="center">
-                        <FlexboxGrid.Item colspan={12}>
-                            <Panel header={<h3>Login</h3>} bordered>
+                    <FlexboxGrid.Item colspan={12} className = "show-fake" >
+                            <Panel  header ={<h3 className="h3Login">Login</h3>} bordered >
                                 <Form fluid>
                                     <FormGroup>
-                                        <ControlLabel>Username or email address</ControlLabel>
+                                        <ControlLabel className="TextLogin">Email address</ControlLabel>
                                         <FormControl onChange={(e) => setEmail(e)} name="name" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <ControlLabel>Password</ControlLabel>
+                                        <ControlLabel className="TextLogin">Password</ControlLabel>
                                         <FormControl onChange={(e) => setPassword(e)} name="password" type="password" />
                                     </FormGroup>
                                     <FormGroup>
                                         <ButtonToolbar>
-                                            <Button onClick={() => callLog()} appearance="primary">Sign in</Button>
+                                            <Button className ="Login-Button" onClick={() => callLog()} appearance="primary">Sign in</Button>
                                             <Button onClick={() => open('info', 'topStart')} appearance="link">Forgot password?</Button>
                                         </ButtonToolbar>
                                     </FormGroup>

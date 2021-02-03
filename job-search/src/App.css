@@ -1,85 +1,89 @@
 .App {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
 }
 html {
   /* background-color: rgb(176, 177, 182); */
+  color:rgb(232, 230, 227);
 }
-#fixed-top{
-  /* border-bottom: 1px solid rgb(56, 61, 63); */
-  /* background-color:rgb(32, 35, 42); */
-  position: fixed;
-  margin: -100px 0px; /* if you change it(change #cardsContainer{ margin:100px} */
-  width:100%;
-  z-index: 1;
+#fixed-top {
+	/* border-bottom: 1px solid rgb(56, 61, 63); */
+	/* background-color:rgb(32, 35, 42); */
+	position: fixed;
+	margin: -100px 0px; /* if you change it(change #cardsContainer{ margin:100px} */
+	width: 100%;
+	z-index: 1;
 }
-#nav{
-  border: 1px solid;
-  margin-bottom:100px;
+#nav {
+	border: 1px solid;
+	margin-bottom: 100px;
 }
-#jobs{
-  border-left: 1px solid white;
-  padding-left: 10px;
+#jobs {
+	border-left: 1px solid white;
+	padding-left: 10px;
 }
-#cardsContainer{
-  margin:100px 400px
-}
-
-#card{
-  height:400px;
-  width:500px;
-  float: left;
-  cursor: pointer;
-  margin: 10px
+#cardsContainer {
+	margin: 100px 400px;
 }
 
-#drawerBody{
-  font-size: 20px;
-}
-img{
-  width:100%;
+#card {
+	height: 400px;
+	width: 500px;
+	float: left;
+	cursor: pointer;
+	margin: 10px;
+  background-color: rgb(190, 195, 197);
+  
+
 }
 
-p{
+#drawerBody {
+	font-size: 20px;
+}
+img {
+	width: 100%;
+}
+
+p {
   margin-bottom: 20px;
+
 }
-h6{
-  margin-bottom: 20px;
+h6 {
+	margin-bottom: 20px;
 }
 
-#pdf{
-  margin-top:0px
+#pdf {
+	margin-top: 0px;
 }
 
-#footer{
-  font-size: 40px;
-  color: black;
-  margin-top: 130px;
+#footer {
+	font-size: 40px;
+	color: black;
+	margin-top: 130px;
 }
 
-.ft{
-  border-top: 1px solid;
-  cursor: pointer;
+.ft {
+	border-top: 1px solid;
+	cursor: pointer;
 }
-.ft1{
-  border-top: 1px solid black;
-  cursor: pointer;
-  color: green;
+.ft1 {
+	border-top: 1px solid black;
+	cursor: pointer;
+	color: green;
 }
-.ft2{
-  border-top: 1px solid black;
-  cursor: pointer;
-  color: red;
+.ft2 {
+	border-top: 1px solid black;
+	cursor: pointer;
+	color: red;
 }
 
-#navAdd{
-  margin-top: 100px;
-  padding-top: 0px
-  /* margin:100px */
+#navAdd {
+	margin-top: 100px;
+	padding-top: 0px;
+	/* margin:100px */
 }
-#navAdd1{
-  margin:100px
+#navAdd1 {
+	margin: 100px;
 }
 
 /* .imgAndName{
@@ -87,21 +91,49 @@ h6{
   padding: -1000px
 } */
 
-.imgCardTop{
-  float: left;
-  border-radius: 15%;
-  height: 150px;
-  width: 200px;
-  margin-right: 20px;
+.imgCardTop {
+	float: left;
+	border-radius: 15%;
+	height: 150px;
+	width: 200px;
+	margin-right: 20px;
 }
 
-.detailsbtn{
-  margin-top: 10px
+.detailsbtn {
+	margin-top: 10px;
+}
+#login-body {
+	background-image: radial-gradient(circle, #ffffff, #a9d6e5, #468faf);
+	height: 800px;
 }
 
+/* Login card */
+.show-fake {
+	background-color: rgba(255, 255, 255, 0.753);
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.h3Login {
+	text-align: center;
+	font-family: 'Times New Roman', Times, serif;
+}
+.TextLogin {
+	font-weight: bold;
+}
+
+.Login-Button {
+	border-radius: 25px;
+	padding: 14px 40px;
+	background-color: #2a6f97;
+}
+/* .Login-Button:hover span{
+  background-color: #012a4a;
+} */
+
+body {
+	background-color: rgb(32, 35, 42)  ;
+}
 @media only screen and (min-width: 375px) and (max-width: 1900px) {
-  #cardsContainer{
-    margin:100px 50px
-  }
-
+	#cardsContainer {
+		margin: 100px 50px;
+	}
 }

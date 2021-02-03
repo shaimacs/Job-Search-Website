@@ -144,7 +144,7 @@ function App() {
   }, [listOfJobs, jobsSearchList,path])
 
   return (
-    <div>
+    <div >
       {allow === true && path === '/' ?
         <Router>
           <NavBar type={type} changePath={(p) => changePath(p)} handleFilterClick={(search) => handleFilterClick(search)} setJobsSearchList={setJobsSearchList} setListOfJobs={setListOfJobs} handleFilterClick={handleFilterClick} callAll={() => callAll()} setInputTitle={setInputTitle} handleChange={handleChange} />
@@ -161,7 +161,7 @@ function App() {
         allow === true && path === '/add-job' ?
           <AddJob changePath={(p) => changePath(p)}/>
           :
-          <Login loged={(user) => loged(user)}></Login>
+          <Login loged={(user) => loged(user)} ></Login>
       }
     </div>
   );

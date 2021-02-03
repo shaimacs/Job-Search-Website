@@ -21,6 +21,30 @@ mongoose.connection.once('open', () => {
 // Instantiate Express Application Object
 const app = express();
 
+
+// 
+//Make sure to add to your whitelist any website or APIs that connect to your backend.
+// var whitelist = [`http://localhost:${PORT}`, "http://example2.com"];
+
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       var message =
+//         "The CORS policy for this application does not allow access from origin " +
+//         origin;
+//       callback(new Error(message), false);
+//     }
+//   },
+// };
+// app.use(cors(corsOptions));
+
+
+
+
+
+
 /*** Middleware ***/
 
 // Add `bodyParser` middleware which will parse JSON requests
@@ -56,9 +80,15 @@ app.use(companies);
 app.use(users);
 /*** Routes ***/
 // Define PORT for the API to run on
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-// Start the server to listen for requests on a given port
+// // Start the server to listen for requests on a given port
+// app.listen(PORT, () => {
+//   console.log(`Jobs => http://localhost:${PORT}`);
+// });
+
+const PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
-  console.log(`Jobs => http://localhost:${PORT}`);
-});
+  console.log(`✅ PORT: ${PORT} 🌟`)
+})

@@ -4,13 +4,13 @@ module.exports = [
     name: 'Sabic',
     email: 'recruiter@Sabic.sa',
     location: 'Jubail',
-    logo: "https://english.aawsat.com/sites/default/files/styles/article_img_top/public/2019/09/20/4.png?itok=QPxgULZm"
+    logo: "https://img.favpng.com/11/12/9/sabic-saudi-arabia-logo-plastic-company-png-favpng-QggixUZBpwthBcu5ctTMXjjbA.jpg"
   },
   {
       name: 'Aramco',
       email: 'recruiter@Aramco.sa',
       location: 'Dhahran',
-      logo:"https://www.pngfind.com/pngs/m/186-1868975_saudi-aramco-logo-hd-png-download.png"
+      logo:"https://static.wixstatic.com/media/ee14af_105d854b09474d919234f1f4d7e7445e~mv2.png/v1/fill/w_360,h_304,al_c,q_85,usm_0.66_1.00_0.01/aramco.webp"
     },
    
     {
