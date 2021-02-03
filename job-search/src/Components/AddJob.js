@@ -30,7 +30,7 @@ const AddJob = (props) => {
             Description: Description.split('\n'),
             skills: skill.split('\n'),
         }
-        axios.post('http://localhost:5000/add-job', newJob)
+        axios.post('/api/jobs/add-job', newJob)
             .then(res => {
                 if (res.status == 200) {
                     alert('job added');

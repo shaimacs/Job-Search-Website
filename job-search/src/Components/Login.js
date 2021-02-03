@@ -26,7 +26,7 @@ const Login = (props) => {
     const callLog = () => {
         axios({
             method: 'GET',
-            url: 'http://localhost:5000/log-in',
+            url: '/api/users/log-in',
             params: {
                 'email': email,
                 'password': password,

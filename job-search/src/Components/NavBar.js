@@ -16,9 +16,9 @@ const NavBar = (props) => {
         let reqURl = '';
         let reqParams = '';
 
-        if (placeHolder === "Title") { reqURl = 'http://localhost:5000/jobs-by-job-title'; reqParams = { 'title': searchInput } }
-        else if (placeHolder === "Location") { reqURl = 'http://localhost:5000/jobs-by-location'; reqParams = { 'location': searchInput } }
-        else if (placeHolder === "Company") { reqURl = 'http://localhost:5000/jobs-by-company'; reqParams = { 'company': searchInput } }
+        if (placeHolder === "Title") { reqURl = '/api/jobs/jobs-by-job-title'; reqParams = { 'title': searchInput } }
+        else if (placeHolder === "Location") { reqURl = '/api/jobs/jobs-by-location'; reqParams = { 'location': searchInput } }
+        else if (placeHolder === "Company") { reqURl = '/api/jobs/jobs-by-company'; reqParams = { 'company': searchInput } }
         axios({
             method: 'GET',
             url: reqURl,

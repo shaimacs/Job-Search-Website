@@ -31,7 +31,7 @@ function App() {
 
   // delete fetch request
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/delete-job/${id}`)
+    axios.delete(`/api/jobs/delete-job/${id}`)
       .then(res => {
         let filterList = tempList.filter(item => item._id !== id);
         setListOfJobs(filterList);
@@ -43,7 +43,7 @@ function App() {
 
   const handleEdit = (id, newData) => {
     console.log(id, newData);
-    axios.put(`http://localhost:5000/update-job/${id}`, newData)
+    axios.put(`/api/jobs/update-job/${id}`, newData)
       .then(res => {
         let editItem = listOfJobs.find(item => item._id === id);
         editItem.title = newData.title;
@@ -84,7 +84,7 @@ function App() {
 
   const callAllJobs = () => {
     // fetch get reqest to /jobs
-    axios.get('http://localhost:5000/jobs')
+    axios.get('/api/jobs/jobs')
       .then(res => {
         // store response date in state
         setTempList(res.data.jobs);
@@ -103,7 +103,7 @@ function App() {
   }
 
   const fetchComanies = () => {
-    axios.get('http://localhost:5000/companies')
+    axios.get('/api/companies/companies')
       .then(res => setCompanies(res.data.companies))
       .catch(err => console.log(err))
   }

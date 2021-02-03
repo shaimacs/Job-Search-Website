@@ -1,9 +1,10 @@
 // Require necessary NPM packages
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 //Don't forget to install cors (npm i cors)
 const cors = require("cors");
-// const cors = require('cors');
+const path = require('path');
 
 
 // Require Route Files
@@ -14,18 +15,25 @@ const users = require('./route/users');
 // Require DB Configuration File
 const db_url = require('./db');
 
+// Instantiate Express Application Object
+
+
+//must change your port to this for deployment else it wont work
+const PORT = process.env.PORT;
+
 // Establish Database Connection
 mongoose.connect(db_url, { useNewUrlParser: true });
 mongoose.connection.once('open', () => {
   console.log('Connected to Mongo');
 });
 
-// Instantiate Express Application Object
-const app = express();
+
+
+//serves all our static files from the build directory.
 
 
 //Make sure to add to your whitelist any website or APIs that connect to your backend.
-var whitelist = [`http://localhost:${PORT}`, "https://<your app name>.herokuapp.com"];
+var whitelist = [`http://localhost:${PORT}`, "https://job-search-website.herokuapp.com"];
 
 var corsOptions = {
   origin: function (origin, callback) {
@@ -61,25 +69,41 @@ const reactPort = 5000;
 //   cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${reactPort}` })
 // );
 // setting permissions
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
-  );
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
+//   );
+//   res.header("Access-Control-Allow-Headers", "Content-Type");
+//   next();
+// });
 
 /*** Routes ***/
 
 // Mount imported Routers ok
 
-app.use(jobs);
-app.use(companies);
-app.use(users);
+
+// const friendsRouter = require('./routes/seller');
+// app.use('/seller', sellerRouter);
+// const friendsRouter = require('./routes/seller');
+// app.use('/api/seller', sellerRouter);
+app.use('/api/jobs',jobs);
+app.use('/api/companies',companies);
+app.use('/api/users',users);
+
+app.use(express.static(path.join(__dirname, "build")));
+
+// After all routes
+// This code essentially serves the index.html file on any unknown routes.
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.listen(PORT);
+
 /*** Routes ***/
 // Define PORT for the API to run on
 // const PORT = process.env.PORT || 5000;
@@ -89,8 +113,9 @@ app.use(users);
 //   console.log(`Jobs => http://localhost:${PORT}`);
 // });
 
-const PORT = process.env.PORT || 3001
+// const PORT = process.env.PORT || 3001
 
-app.listen(PORT, () => {
-  console.log(`✅ PORT: ${PORT} 🌟`)
-})
+// app.listen(PORT, () => {
+//   console.log(`✅ PORT: ${PORT} 🌟`)
+// })
+

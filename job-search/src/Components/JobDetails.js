@@ -20,7 +20,7 @@ const JobDetails = (props) => {
         console.log('cooooooooooomp', props.job.company)
         axios({
             method: 'GET',
-            url: 'http://localhost:5000/company-logo',
+            url: '/api/companies/company-logo',
             params: {
                 'company': company,
             }
