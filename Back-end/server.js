@@ -22,7 +22,7 @@ const db_url = require('./db');
 const PORT = process.env.PORT;
 
 // Establish Database Connection
-mongoose.connect(db_url, { useNewUrlParser: true });
+mongoose.connect(process.env.MongoDBURL, { useNewUrlParser: true });
 mongoose.connection.once('open', () => {
   console.log('Connected to Mongo');
 });
