@@ -1,6 +1,6 @@
 ### A Job search Website
-Job Search website the allow the user to view jobs details, search for jobs based on city, job title and company name, also apply for jobs.
-and allow the admin to add new job, modify and delete jobs.
+Job Search website allows the user to view jobs details, search for jobs based on city, job title and company name, also apply for jobs.
+and allowing the admin to add new job, modify and delete jobs.
 
 
 
@@ -64,7 +64,6 @@ All application components are usable across modern desktop, tablet and phone br
 - [x] Search For Job by Job Title.
 - [x] Search For Job by Cities.
 - [x] Search For Job by Company Name.
-- [x] Sort The Jobs Based On Date.
 - [x] Apply For a Job.
 - [x] Upload The Resume.
 - [x] Edit/Update The Job.
