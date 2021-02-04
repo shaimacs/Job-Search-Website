@@ -69,6 +69,7 @@ All application components are usable across modern desktop, tablet and phone br
 - [x] Add New Job.
 - [x] Delete a Job.
 - [x] View Job Details.
+- [x] Share the Job.
 <br><br><br>
 
 ## Searching 
