@@ -15,7 +15,6 @@ Run `npm start` to start your frontend.<br>
 
 ### User Stories 
 - As a user, I should be able to search for a job in my city. 
-- As a user, I should be able to search for a job according to post date. 
 - As a user, I should be able to search by a job title.
 - As a user, I should be able to apply for a job. 
 - As a user, I should be able to upload my resume.
