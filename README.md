@@ -1,6 +1,6 @@
-# Job_Search
-
 ### A Job search Website
+Job Search website the allow the user to view jobs details, search for jobs based on city, job title and company name, also apply for jobs.
+and allow the admin to add new job, modify and delete jobs.
 
 
 
@@ -11,6 +11,28 @@ To run this project on your local machine, fork and clone the repo from github. 
 Install all dependencies by running `npm i` in the project directory terminal. <br>
 Run `npm start` to start your frontend.<br>
 <br><br>
+
+
+### User Stories 
+- As a user, I should be able to search for a job in my city. 
+- As a user, I should be able to search for a job according to post date. 
+- As a user, I should be able to search by a job title.
+- As a user, I should be able to apply for a job. 
+- As a user, I should be able to upload my resume.
+- As a user, I should be able to share the job to my friends. 
+
+### WireFrames
+
+> WireFrame.
+<img src = "Images/WireFrame1.jpeg" > 
+<img src = "Images/WireFrame2.jpeg" height="600" width="600"> 
+<img src = "Images/WireFrame3.jpeg" height="600" width="600"> 
+
+### ER Diagram
+<img src = "Images/ERD.jpg"> 
+
+### Use Case 
+<img src = "Images/usecase-p3.png" height="600" width="600">
 
 # Use
 
@@ -68,27 +90,6 @@ Click on the job to see more info.
 <br><br><br>
 
 
-### User Stories 
-- As a user, I should be able to search for a job in my city. 
-- As a user, I should be able to search for a job according to post date. 
-- As a user, I should be able to search by a job title.
-- As a user, I should be able to apply for a job. 
-- As a user, I should be able to upload my resume.
-- As a user, I should be able to share the job to my friends. 
-
-### WireFrames
-
-> WireFrame.
-
-<img src = "Images/WireFrame1.jpeg" > 
-<img src = "Images/WireFrame2.jpeg" height="600" width="600"> 
-<img src = "Images/WireFrame3.jpeg" height="600" width="600"> 
-
-### ER Diagram
-<img src = "Images/ERD.jpg"> 
-
-### Use Case 
-<img src = "Images/usecase-p3.png" height="600" width="600">
 
 
 ### RestAPI 
@@ -111,6 +112,13 @@ Number        | Action       |      URL    |   HTTP Verb
 - [x] Make sing-in. 
 - [ ] Make sign-up.
 - [ ] Get a Notifications to new Jobs in your Region. 
+
+# Team Members:
+
+[Faisal Alsagri](https://git.generalassemb.ly/faisalabdulaziz)\
+[Dhuha Ahmad](https://git.generalassemb.ly/dhuhaahmad)\
+[Ola Altalhi](https://git.generalassemb.ly/olaaltalhi)\
+[Shaima Alshammary](https://git.generalassemb.ly/shaimacs)
 
 # Special thanks:
 
