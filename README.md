@@ -2,8 +2,6 @@
 Job Search website allows the user to view jobs details, search for jobs based on city, job title and company name, also apply for jobs.
 and allowing the admin to add new job, modify and delete jobs.
 
-
-
 <br>
 
 ## Getting Started
@@ -16,25 +14,26 @@ Run `npm start` to start your frontend.<br>
 ### User Stories 
 - As a user, I should be able to search for a job in my city. 
 - As a user, I should be able to search by a job title.
+- As a user, I should be able to search by a company name.
 - As a user, I should be able to apply for a job. 
 - As a user, I should be able to upload my resume.
-- As a user, I should be able to share the job to my friends. 
+- As a user, I should be able to share the job. 
 
 ### WireFrames
-
 > WireFrame.
 <img src = "Images/WireFrame1.jpeg" > 
 <img src = "Images/WireFrame2.jpeg" height="600" width="600"> 
 <img src = "Images/WireFrame3.jpeg" height="600" width="600"> 
 
 ### ER Diagram
+> ER Diagram.
 <img src = "Images/ERD.jpg"> 
 
 ### Use Case 
+> Use Case.
 <img src = "Images/usecase-p3.png" height="600" width="600">
 
 # Use
-
 Either download the project or [Use it online](https://job-search-wesbsite.herokuapp.com/)
 <br><br><br>
 
